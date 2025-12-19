@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suicide and Self-Harm Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="mapdata.js"></script>
+    <script type="text/javascript" src="countrymap.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <h1>Suicide and Self-Harm Mortality Dashboard</h1>
+        <p>Suicide & Intentional Self-harm Policy Monitor (1980 - 2023)</p>
+      </div>
+      <div style="text-align: right; font-size: 0.8rem">
+        Source: WHO/Europe, PSA
+        <br />Updated: 2025
+      </div>
+    </header>
+
+    <div class="container">
+      <div
+        class="card full-width"
+        style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap"
+      >
+        <div style="font-weight: bold; color: var(--secondary)">
+          Filter Period:
+        </div>
+        <div>
+          <label for="startYearSelect">From: </label>
+          <select id="startYearSelect" onchange="updateDashboard()"></select>
+        </div>
+        <div>
+          <label for="endYearSelect">To: </label>
+          <select id="endYearSelect" onchange="updateDashboard()"></select>
+        </div>
+        <div
+          id="filterStatus"
+          style="font-size: 0.85rem; color: #666; margin-left: auto"
+        >
+          Showing all data
+        </div>
+      </div>
+
+      <div class="card full-width metrics-row">
+        <div class="metric">
+          <h3 id="currentRate">8.64</h3>
+          <p>Current Rate (per 100k)</p>
+        </div>
+        <div class="metric">
+          <h3 id="peakRate">18.40</h3>
+          <p>Peak Rate (1994)</p>
+        </div>
+        <div class="metric" style="border-left-color: var(--danger)">
+          <h3 id="genderGap">4.1x</h3>
+          <p>Male vs Female Risk</p>
+        </div>
+        <div class="metric" style="border-left-color: #27ae60">
+          <h3 id="reduction">-53%</h3>
+          <p>Reduction since Peak</p>
+        </div>
+      </div>
+
+      <div class="card full-width">
+        <h2>Long-term Regional Trend (WHO European Region)</h2>
+        <div class="chart-container" style="height: 500px">
+          <canvas id="trendChart"></canvas>
+        </div>
+        <div class="insight-box">
+          <h3>Observation</h3>
+          <p>
+            Based on the data, the long-term trend shows a decline in rates
+            since 1994. Despite this positive overall direction, a significant
+            <strong>gender gap has persisted for over 40 years</strong>, with
+            male mortality rates consistently remaining approximately four times
+            higher than those of females.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Regional Context (2019)</h2>
+        <div class="chart-container" style="height: 300px">
+          <canvas id="regionChart"></canvas>
+        </div>
+        <p style="font-size: 0.9rem; color: #666; margin-top: 15px">
+          Comparisons show that Nordic countries, despite high quality of life,
+          maintain higher suicide rates (11.23) compared to the EU average
+          (8.82).
+        </p>
+      </div>
+
+      <div class="flex-row">
+        <div class="card" style="flex: 1.5">
+          <h2>Regional Distribution in the Philippines (2023)</h2>
+          <p style="font-size: 0.9rem; color: #555">
+            <strong>Dark red regions</strong> indicate top priority areas based
+            on 2023 cases.
+          </p>
+          <div id="map"></div>
+          <p style="font-size: 0.9rem; color: #555">
+            <strong>Total</strong> reported deaths are 3,133
+          </p>
+        </div>
+
+        <div class="card" style="flex: 1">
+          <h2>Demographic Breakdown (PH 2023)</h2>
+          <div class="chart-container" style="height: 450px">
+            <canvas id="phDemographicChart"></canvas>
+          </div>
+          <div class="insight-box" style="margin-top: 15px; font-size: 0.85rem">
+            <p style="color: #555">
+              <strong>Observation:</strong> Highest frequency is observed in the
+              20-29 age bracket for both genders, with males consistently
+              showing higher totals.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      Generated for Policy Analysis | Data interpreted from
+      <a
+        href="https://gateway.euro.who.int/en/indicators/hfamdb_771-sdr-suicide-and-intentional-self-harm-per-100-000/?utm_source=chatgpt.com#id=31321"
+        >WHO European Region</a
+      >
+      <a
+        href="https://psa.gov.ph/system/files/vsd/4_2023%20Deaths_Statistical%20Tables_ccv_vsd_mlb.xlsx"
+        >Philippine Statistics Authority PH</a
+      >
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
