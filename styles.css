@@ -1,9 +1,9 @@
 :root {
   --primary: #213448;
   --secondary: #34495e;
-  --accent: #EAE0CF;
+  --accent: #eae0cf;
   --danger: #e74c3c;
-  --light: #94B4C1;
+  --light: #94b4c1;
   --white: #ffffff;
 }
 
@@ -76,29 +76,19 @@ header {
 }
 
 /* Map Adjustments */
-.map-container {
-  width: 100%;
-  max-width: 50%; /* Changed from 600px to allow full width */
-  margin: 20px auto;
-  padding: 20px;
-  background: var(--white);
-  border-radius: 32px;
-}
-
 
 
 #map {
   width: 100%;
-  min-height: 400px; /* Ensure map has height to be visible */
+  min-height: 10px; /* Ensure map has height to be visible */
 }
 
-
 .policy-note {
-    display: block;
-    margin-top: 8px;
-    font-style: italic;
-    color: #1e293b;
-    font-weight: 500;
+  display: block;
+  margin-top: 8px;
+  font-style: italic;
+  color: #1e293b;
+  font-weight: 500;
 }
 
 footer {
@@ -109,10 +99,35 @@ footer {
   margin-top: 30px;
 }
 
-
 @media (max-width: 600px) {
   header {
     flex-direction: column;
     text-align: center;
+  }
+  /* Ensure the container allows wrapping */
+  .metrics-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Reduced gap for smaller screens */
+  }
+
+  .metric {
+    /* calc(50% - 5px) works because 5px is half of the 10px gap.
+       This ensures two items fit perfectly side-by-side.
+    */
+    flex: 1 1 calc(50% - 5px);
+    box-sizing: border-box; /* Ensures padding doesn't break the width */
+    padding: 10px;
+    font-size: 0.9em;
+  }
+
+  .metric h3 {
+    font-size: 1em;
+    margin: 5px 0;
+  }
+
+  .metric p {
+    font-size: 1.2em;
+    margin: 5px 0;
   }
 }
